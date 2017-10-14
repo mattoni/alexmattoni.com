@@ -16,7 +16,7 @@ interface StaticContext {
 export const handleAppRequest = (req: Hapi.Request, reply: Hapi.ReplyNoContinue) => {
     const context: StaticContext = {};
     const store = initStore()
-
+    console.log("Serving", req.path);
     if (context.url) {
         reply.redirect(context.url);
         return;

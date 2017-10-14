@@ -1,44 +1,61 @@
 import * as React from "react";
 import { SFC } from "react";
-import { style } from "typestyle";
+import { style, classes } from "typestyle";
 import { Colors } from "common/styles";
 import { Helmet } from "react-helmet";
+import { ProfileImage } from "assets/images";
 
 interface HomeProps {
 
 }
 
 const Styles = {
-    wrapper: style({
+    background: style({
         display: "flex",
-        flexDirection: "column",
+        justifyContent: "space-between",
+        color: `${Colors.lightGray}`,
+        height: "100vh",
+        // background: `url(${BackgroundImage}) no-repeat center center fixed`,
+        // backgroundSize: "cover",
+    }),
+    panel: style({
+        width: "50vw",
+        height: "100vh",
+        backgroundColor: `rgba(255, 255, 255, 0.3)`,
+        position: "relative",
+    }),
+    profile: style({
+        display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        color: `${Colors.lightGray}`,
+        overflow: "hidden",
+        $nest: {
+            "& > img": {
+                flexShrink: 0,
+                minWidth: "100%",
+                minHeight: "100%",
+            }
+        }
     }),
-    title: style({
-        fontSize: "10rem",
-        margin: 0,
-    }),
-    fuse: style({
-        color: `${Colors.mainRed}`
-    }),
-    subHeader: style({
-        fontSize: "1.8rem",
-        fontWeight: 600,
+    greeting: style({
+        display: "flex",
+        justifyContent: "center",
+        padding: "2rem"
     })
 }
 
 export const HomeView: SFC<HomeProps> = () => (
-    <div className={Styles.wrapper}>
+    <div className={Styles.background}>
         <Helmet>
-            <title>FuseDux Home</title>
+            <title>Alexander Mattoni</title>
         </Helmet>
-        <h1 className={Styles.title}>
-            <span className={Styles.fuse}>Fuse</span>Dux
-        </h1>
-        <div className={Styles.subHeader}>
-            The <span className={Styles.fuse}>ultimate</span> in modern type-safe React
+        <div className={Styles.panel}>
+            <div className={Styles.profile}>
+                <img src={ProfileImage} />
+            </div>
+        </div>
+        <div className={classes(Styles.panel, Styles.greeting)}>
+            <h1>Alexander Mattoni</h1>
         </div>
     </div>
 )

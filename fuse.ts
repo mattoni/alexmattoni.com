@@ -59,6 +59,7 @@ class Bundler {
                 stores: "~/stores",
                 modules: "~/modules",
                 client: "~/client",
+                assets: "~/assets",
             },
             plugins: [
                 JSONPlugin(),
@@ -73,17 +74,17 @@ class Bundler {
                 EnvPlugin(this.envVars),
                 this.opts.production
                     ? QuantumPlugin({
-                          uglify: true,
-                          manifest: true,
-                          treeshake: true,
-                          target: this.opts.clientBuild ? "browser" : "server",
-                          removeExportsInterop: false,
-                          hoisting: { names: ["React", "ReactDOM", "tslib"] },
-                          warnings: false,
-                          bakeApiIntoBundle: this.opts.clientBuild
-                              ? "vendor"
-                              : "server",
-                      })
+                        uglify: true,
+                        manifest: true,
+                        treeshake: true,
+                        target: this.opts.clientBuild ? "browser" : "server",
+                        removeExportsInterop: false,
+                        hoisting: { names: ["React", "ReactDOM", "tslib"] },
+                        warnings: false,
+                        bakeApiIntoBundle: this.opts.clientBuild
+                            ? "vendor"
+                            : "server",
+                    })
                     : {},
             ],
         });
@@ -92,8 +93,8 @@ class Bundler {
             this.fuse
                 .bundle(`vendor`)
                 .instructions(
-                    "~client/index.tsx",
-                );
+                "~client/index.tsx",
+            );
 
             const client = this.fuse.bundle(`client`);
             client.instructions(

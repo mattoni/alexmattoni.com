@@ -24,6 +24,16 @@ const start = async () => {
                 path: './dist/public/js',
             }
         }
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/assets/{file*}',
+        handler: {
+            directory: {
+                path: './dist/public/assets',
+            }
+        }
     })
 
     initPageStyles();
