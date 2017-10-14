@@ -41,7 +41,7 @@ const Styles = {
         display: "flex",
         justifyContent: "center",
         padding: "2rem"
-    })
+    }),
 }
 
 export const HomeView: SFC<HomeProps> = () => (

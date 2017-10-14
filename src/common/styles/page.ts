@@ -1,6 +1,7 @@
 import { setupPage, normalize } from "csstips";
 import { cssRule, cssRaw, fontFace } from "typestyle";
 import { Colors } from "./colors";
+import { initHeaders } from "./headers";
 
 export function initPageStyles() {
     cssRaw(`
@@ -29,5 +30,7 @@ export function initPageStyles() {
         "-webkit-font-smoothing": "antialiased",
         textRendering: "auto",
     });
+
+    initHeaders();
 }
 
