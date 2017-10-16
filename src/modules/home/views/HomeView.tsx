@@ -61,7 +61,7 @@ const Styles = {
         display: "flex",
         // flexGrow: 1,
         backgroundImage: `url(${ProfileImage})`,
-        backgroundSize: "contain",
+        // backgroundSize: "contain",
         backgroundPosition: "35%",
         borderRadius: "1%",
         backgroundRepeat: "no-repeat",
