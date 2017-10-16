@@ -34,6 +34,7 @@ class Bundler {
     private envVars = {
         NODE_ENV: "development",
         YEAR: new Date().getFullYear(),
+        PORT: process.env.PORT,
     };
 
     public setProdMode = () => {
@@ -157,7 +158,7 @@ class Bundler {
 const bundler = new Bundler();
 
 Sparky.task("clean", () => Sparky.src("dist/").clean("dist/"));
-Sparky.task("production", bundler.setProdMode);
+Sparky.task("pro", bundler.setProdMode);
 Sparky.task("watch", () => bundler.setOpts({ watch: true }));
 Sparky.task("bundle", async () => {
     await bundler.bundle();
@@ -167,9 +168,9 @@ Sparky.task("bundle", async () => {
 
 Sparky.task("default", ["clean", "watch", "bundle"], () => null);
 Sparky.task(
-    "production",
-    ["clean", "production", "bundle"],
-    async () => { },
+    "prod",
+    ["clean", "pro", "bundle"],
+    async () => null,
 );
 
 // Sparky.task(

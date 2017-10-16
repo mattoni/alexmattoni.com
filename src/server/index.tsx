@@ -21,6 +21,23 @@ const start = async () => {
             key: fs.readFileSync(path.join(tlsDir, key)),
             cert: fs.readFileSync(path.join(tlsDir, chain))
         }
+        const http = new Hapi.Server();
+        http.connection({
+            port: 80,
+        });
+
+        http.route({
+            method: '*',
+            path: '/{path*}',
+            handler: (req, resp) => resp.redirect('https://alexmattoni.com/' + req.params.path)
+        });
+        const httpErr = await http.start();
+        if (httpErr) { throw httpErr; }
+        console.log(
+            Chalk.black.bgYellow(
+                `\n\n👻 <~ HTTP redirect server running at: ${http.info!.uri}`,
+            ),
+        );
     }
 
     server.connection({
@@ -60,7 +77,7 @@ const start = async () => {
     if (err) { throw err; }
     console.log(
         Chalk.black.bgYellow(
-            `\n\n👻  Server running at: ${server.info!.uri}`,
+            `\n\n👻 !!! Server running at: ${server.info!.uri}`,
         ),
     );
 }

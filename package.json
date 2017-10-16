@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node fuse",
-    "production": "ts-node fuse production"
+    "production": "ts-node fuse prod"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -52,7 +52,8 @@
     "react-router-redux": "next",
     "redux": "^3.7.2",
     "redux-saga": "^0.15.6",
+    "tslib": "^1.8.0",
     "typestyle": "^1.4.2",
-    "tslib": "^1.8.0"
+    "uglify-js": "^3.1.4"
   }
 }

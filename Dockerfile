@@ -6,9 +6,8 @@ COPY package-lock.json /src
 WORKDIR /src
 RUN ["npm", "install"]
 COPY . .
-ENV CONFIG_DIR "/var/lib/cycle/config"
 ENV NODE_ENV "production"
-RUN ["npm", "build"]
+RUN ["npm", "run", "production"]
 RUN ["rm", "-rf", "node_modules"]
 RUN ["npm", "install", "--production"]
 
