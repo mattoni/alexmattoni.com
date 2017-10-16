@@ -5,6 +5,8 @@ import { routes } from "common/router";
 import { Store } from "react-redux";
 import { RootState } from "common/redux";
 import { RouteRenderer } from "common/router/components/RouteRenderer";
+import { Helmet } from "react-helmet";
+import { Fav196, Fav32 } from "assets/images";
 
 interface AppProps {
     store: Store<RootState>
@@ -20,6 +22,10 @@ const Styles = {
 
 export const AppView: SFC<AppProps> = (props: AppProps) => (
     <div>
+        <Helmet>
+            <link rel="shortcut icon" type="image/x-icon" href={Fav32} />
+            <link rel="icon" sizes="196x196" href={Fav196} />
+        </Helmet>
         <main className={Styles.wrapper} role="stage">
             {routes.map(route => (
                 <RouteRenderer

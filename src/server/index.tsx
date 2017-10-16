@@ -4,12 +4,30 @@ import "isomorphic-fetch";
 import { handleAppRequest } from "./request";
 import * as inert from "inert";
 import { initPageStyles } from "common/styles";
+import * as fs from "fs";
+import * as path from "path";
 
 const start = async () => {
-    const server = new Hapi.Server();
+    const server = new Hapi.Server({});
     await server.register(inert);
 
-    server.connection({ port: process.env.PORT || 3000 });
+    const tlsDir = process.env.TLSDIR || "/tls";
+    const key = process.env.TLSKEY || "current.key";
+    const chain = process.env.TLSCHAIN || "current.chain";
+    let tls;
+
+    if (fs.existsSync(path.join(tlsDir, key))) {
+        tls = {
+            key: fs.readFileSync(path.join(tlsDir, key)),
+            cert: fs.readFileSync(path.join(tlsDir, chain))
+        }
+    }
+
+    server.connection({
+        port: process.env.PORT || 3000,
+        tls
+    });
+
     server.route({
         method: '*',
         path: '/{p*}',

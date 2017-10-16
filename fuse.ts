@@ -165,10 +165,10 @@ Sparky.task("bundle", async () => {
     return bundler.bundle();
 });
 
-Sparky.task("default", ["clean", "watch", "bundle", "finalize"], () => null);
+Sparky.task("default", ["clean", "watch", "bundle"], () => null);
 Sparky.task(
     "production",
-    ["clean", "production", "bundle", "finalize"],
+    ["clean", "production", "bundle"],
     async () => { },
 );
 
