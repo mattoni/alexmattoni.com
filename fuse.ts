@@ -166,11 +166,11 @@ Sparky.task("bundle", async () => {
 });
 
 Sparky.task("default", ["clean", "watch", "bundle", "finalize"], () => null);
-// Sparky.task(
-//     "prod-build",
-//     ["clean", "production", "bundle", "finalize"],
-//     async () => {},
-// );
+Sparky.task(
+    "production",
+    ["clean", "production", "bundle", "finalize"],
+    async () => { },
+);
 
 // Sparky.task(
 //     "prod-test",

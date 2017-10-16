@@ -21,6 +21,11 @@ export function initPageStyles() {
         fontSize: "62.5%",
     });
 
+    cssRule("a", {
+        color: `#191970`,
+        textDecoration: "none",
+    })
+
     // Standardize body properties
     cssRule("body", {
         color: `${Colors.text}`,

@@ -9,7 +9,7 @@ const start = async () => {
     const server = new Hapi.Server();
     await server.register(inert);
 
-    server.connection({ port: 3000, host: '127.0.0.1' });
+    server.connection({ port: process.env.PORT || 3000 });
     server.route({
         method: '*',
         path: '/{p*}',
